@@ -59,7 +59,7 @@
     "@types/glob": "^7.1.4",
     "@types/helmet": "0.0.48",
     "@types/jest": "^27.0.2",
-    "@types/node": "^16.10.2",
+    "@types/node": "^18.18.9",
     "@types/nunjucks": "^3.2.0",
     "@types/supertest": "^2.0.11",
     "cucumber": "^6.0.5",
