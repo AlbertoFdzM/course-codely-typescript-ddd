@@ -3,6 +3,15 @@ import { CourseRepository } from '../../../../../src/Contexts/Mooc/Courses/domai
 
 export class CourseRepositoryMock implements CourseRepository {
 	private readonly mockSave = jest.fn();
+	private readonly mockFind = jest.fn();
+
+	constructor(private mockCourse: Course) {}
+
+	public async find(id: string): Promise<Course> {
+		await this.mockFind(id);
+
+		return this.mockCourse;
+	}
 
 	async save(course: Course): Promise<void> {
 		await this.mockSave(course);

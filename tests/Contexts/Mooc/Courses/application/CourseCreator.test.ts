@@ -2,23 +2,25 @@ import { CourseCreator } from '../../../../../src/Contexts/Mooc/Courses/applicat
 import { Course } from '../../../../../src/Contexts/Mooc/Courses/domain/Course';
 import { CourseRepositoryMock } from '../__mocks__/CourseRepositoryMock';
 
-let repository: CourseRepositoryMock;
-let creator: CourseCreator;
-
-beforeEach(() => {
-	repository = new CourseRepositoryMock();
-	creator = new CourseCreator(repository);
-});
-
 describe('CourseCreator', () => {
+	let expectedCourse: Course;
+	let repository: CourseRepositoryMock;
+	let creator: CourseCreator;
+
+	beforeAll(() => {
+		expectedCourse = new Course({
+			id: 'some-id',
+			name: 'some-name',
+			duration: 'some-duration'
+		});
+		repository = new CourseRepositoryMock(expectedCourse);
+		creator = new CourseCreator(repository);
+	});
+
 	it('should create a valid course', async () => {
-		const id = 'some-id';
-		const name = 'some-name';
-		const duration = 'some-duration';
+		const course = new Course(expectedCourse);
 
-		const course = new Course({ id, name, duration });
-
-		await creator.run(id, name, duration);
+		await creator.run(course.id, course.name, course.duration);
 
 		repository.assertLastSavedCourseIs(course);
 	});
