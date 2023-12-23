@@ -1,4 +1,4 @@
-import { json, urlencoded } from 'body-parser';
+import bodyParser from 'body-parser';
 import compress from 'compression';
 import errorHandler from 'errorhandler';
 import express, { Request, Response } from 'express';
@@ -7,7 +7,7 @@ import helmet from 'helmet';
 import * as http from 'http';
 import httpStatus from 'http-status';
 
-import { registerRoutes } from './routes';
+import { registerRoutes } from './routes/index';
 
 export class Server {
 	private readonly express: express.Express;
@@ -17,8 +17,8 @@ export class Server {
 	constructor(port: string) {
 		this.port = port;
 		this.express = express();
-		this.express.use(json());
-		this.express.use(urlencoded({ extended: true }));
+		this.express.use(bodyParser.json());
+		this.express.use(bodyParser.urlencoded({ extended: true }));
 		this.express.use(helmet.xssFilter());
 		this.express.use(helmet.noSniff());
 		this.express.use(helmet.hidePoweredBy());
@@ -31,7 +31,7 @@ export class Server {
 		registerRoutes(router);
 
 		router.use((err: Error, req: Request, res: Response, _next: () => void) => {
-			console.log(err);
+			console.error(err);
 			res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
 		});
 	}
@@ -40,9 +40,7 @@ export class Server {
 		return new Promise(resolve => {
 			const env = this.express.get('env') as string;
 			this.httpServer = this.express.listen(this.port, () => {
-				console.log(
-					`  Mock Backend App is running at http://localhost:${this.port} in ${env} mode`
-				);
+				console.log(`  Mock Backend App is running at http://localhost:${this.port} in ${env} mode`);
 				console.log('  Press CTRL-C to stop\n');
 				resolve();
 			});

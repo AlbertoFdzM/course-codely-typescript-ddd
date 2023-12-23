@@ -1,13 +1,15 @@
 import { MoocBackendApp } from './MoocBackendApp';
 
-try {
-	new MoocBackendApp().start();
-} catch (e) {
-	console.log(e);
-	process.exit(1);
-}
+void (async () => {
+	try {
+		await new MoocBackendApp().start();
+	} catch (e) {
+		console.error(e);
+		process.exit(1);
+	}
 
-process.on('uncaughtException', err => {
-	console.log('uncaughtException', err);
-	process.exit(1);
-});
+	process.on('uncaughtException', err => {
+		console.error('uncaughtException', err);
+		process.exit(1);
+	});
+})();

@@ -3,6 +3,6 @@
   "compilerOptions": {
     "lib": ["es2015", "dom"],
   },
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "mooc/backend/features/step_definitions/controller.steps.ts"]
 }
 

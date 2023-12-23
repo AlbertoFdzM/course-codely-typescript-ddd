@@ -1,5 +1,5 @@
+import { AfterAll, BeforeAll, Given, Then } from '@cucumber/cucumber';
 import assert from 'assert';
-import { AfterAll, BeforeAll, Given, Then } from 'cucumber';
 import request from 'supertest';
 
 import { MoocBackendApp } from '../../../../../../src/apps/mooc/backend/MoocBackendApp';
@@ -26,11 +26,11 @@ Then('the response should be empty', () => {
 	assert.deepStrictEqual(_response.body, {});
 });
 
-BeforeAll(() => {
+BeforeAll(async () => {
 	application = new MoocBackendApp();
-	application.start();
+	await application.start();
 });
 
-AfterAll(() => {
-	application.stop();
+AfterAll(async () => {
+	await application.stop();
 });
