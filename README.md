@@ -1,5 +1,3 @@
-# TypeScript basic skeleton
+# DDD en TypeScript: Modelado y arquitectura
 
-For now, you have all the code example available in this other repository: https://github.com/CodelyTV/typescript-ddd-example
-
-The idea is that we'll move the basic parts (folder structure and bare minimum code to serve as skeleton) to this repository (`typescript-ddd-skeleton`) once we completely finish the `typescript-ddd-example` code. Current progress: ~95%
+Ejercicios abordados en el curso de [DDD en TypeScript: Modelado y arquitectura](https://pro.codely.com/library/ddd-en-typescript-modelado-y-arquitectura-172533/375662/about/) de [Codely](https://codely.com/).

@@ -2,7 +2,7 @@
 
 # Shell to use for running scripts
 SHELL := $(shell which bash)
-IMAGE_NAME := codelytv/typescript-ddd-skeleton
+IMAGE_NAME := AlbertoFdzM/course-codely-typescript-ddd
 SERVICE_NAME := app
 MOOC_APP_NAME := mooc
 BACKOFFICE_APP_NAME := backoffice
