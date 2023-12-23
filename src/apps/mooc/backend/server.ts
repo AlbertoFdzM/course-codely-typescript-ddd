@@ -24,15 +24,18 @@ export class Server {
 		this.express.use(helmet.hidePoweredBy());
 		this.express.use(helmet.frameguard({ action: 'deny' }));
 		this.express.use(compress());
+
 		const router = Router();
+
 		router.use(errorHandler());
+
 		this.express.use(router);
 
 		registerRoutes(router);
 
 		router.use((err: Error, req: Request, res: Response, _next: () => void) => {
 			console.error(err);
-			res.status(httpStatus.INTERNAL_SERVER_ERROR).send(err.message);
+			res.status(httpStatus.INTERNAL_SERVER_ERROR).send();
 		});
 	}
 
